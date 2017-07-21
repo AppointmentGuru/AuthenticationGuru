@@ -125,3 +125,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 from .custom_settings import *
+from .appointmentguru_settings import *
