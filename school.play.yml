@@ -1,0 +1,84 @@
+---
+- hosts: localhost
+  vars:
+    organization: appointmentguru
+    service: authenticationguru
+    entity_name: authentication
+
+    dns_tld: "{{canonical_tld}}"
+    dns_subdomains:
+      - subdomain: "{{service}}"
+        ip: "{{swarm_ip}}"
+    kong_deleted_apis:
+      - authenticationguru
+      - authentication
+    kong_api:
+      name: "{{service}}"
+      upstream_url: "http://{{service}}:80"
+      hosts: "{{service}}.{{canonical_tld}}"
+    kong_plugins:
+    - name: cors
+      config: {}
+    - name: rate-limiting
+      config:
+        config.second: 10
+        config.hour: 10000
+    # status:
+    WebsiteName: "{{entity_name}}"
+    WebsiteURL: "https://{{service}}.{{canonical_tld}}"
+    CheckRate: 300
+    TestTags: ''
+  roles:
+    - role: dns
+      tags: [dns]
+    - role: kongapi
+      tags: [kong]
+    - role: status
+      tags: [status]
+
+- hosts: server_swarm
+  vars:
+    # everything else hangs off these
+    organization: appointmentguru
+    service: authenticationguru
+    entity_name: authentication
+
+    docker_environment:
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        value: "{{docker_service}},{{service}}.{{canonical_tld}}"
+      - key: KONG_ADMIN_URL
+        value: https://swarm.appointmentguru.co/manage
+      - key: KONG_ADMIN_USERNAME
+        value: toast38coza
+      - key: KONG_ADMIN_PASSWORD
+        value: budry0kibri
+      - key: KONG_GATEWAY_URL
+        value: https://swarm.appointmentguru.co
+      - key: KONG_PROVISION_KEY
+        value: C8DE6912-5A9D-437E-BE6B-B2CCA6679D9E
+      - key: APPGURU_URL
+        value: https://api.appointmentguru.co
+
+    # you shouldnt need to edit anything below here:
+    # ----------------------------------------------
+
+    # docker app setup:
+    # see: roles/djangoapp/defaults/main.yml for more:
+    docker_org: "{{organization}}"
+    docker_image: "{{service}}"
+    docker_service: "{{service}}"
+    docker_command: "sh /code/run.sh"
+
+  roles:
+    - role: djangoapp
+      tags: [app, django, deploy]
+
+  post_tasks:
+    - name: Tell slack
+      slack:
+        token: '{{slack_token}}'
+        msg: 'Deployed: {{docker_service}} using image: {{docker_org}}/{{docker_image}}:{{docker_version}}. See: {{service}}.{{canonical_tld}}'
+      delegate_to: localhost
+      when: slack_token is defined
