@@ -16,6 +16,8 @@ def index(request):
     for key, value in request.META.items():
         if key.startswith('HTTP_X_'):
             data[key] = value
+    data['user_id'] = request.user.id
+    data['is_authenticated'] = request.user.is_authenticated()
     return JsonResponse(data)
 
 @require_http_methods(["GET", "POST"])
