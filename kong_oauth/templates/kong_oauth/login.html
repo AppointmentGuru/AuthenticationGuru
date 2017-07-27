@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<style>
+.login-form {
+	width:400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	border:1px solid #eee;
+	box-shadow:0 0 10px rgba(0, 0, 0, .15);
+	padding:20px;
+	font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+.form label, form input {
+	font-size: 16px;
+	display:block;
+	margin: 5px;
+	width:90%;
+	padding: 10px;
+
+}
+form input, form label {
+	margin-left: auto;
+	margin-right: auto;
+}
+form button {
+	margin-left: auto;
+	margin-right: auto;
+	width:90%;
+	padding: 10px;
+	margin-top: 20px;
+	display:block;
+	background-color: blue;
+	color: white;
+	font-size:16px;
+}
+		</style>
+	</head>
+	<body>
+		<form class='login-form form' action="{% url 'kong_login' %}" method="post">
+			<img src='https://appointmentguru.co/assets/img/guru/appointment-logo.png' />
+		    {% csrf_token %}
+		    {{ form }}
+		    <input type="hidden", name='client_id' value='94A049E4-5D1F-4D78-B090-0309C68BA2DE' />
+		    <input type="hidden", name='client_secret' value='C455E955-767F-418C-B69B-A0C7D10D44DD' />
+		    <button type="submit" value="Login" >Login</button>
+		</form>
+	</body>
+</html>
