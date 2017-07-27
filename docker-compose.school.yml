@@ -4,9 +4,9 @@ services:
     image: appointmentguru/infrastructure:latest
     volumes:
       - ~/.ssh:/root/.ssh # map ssh keys
-      - ./school.play.yml:/code/ansible/school.play.yml
-    command: ansible-playbook ansible/school.play.yml  -i /etc/ansible/inventory/digital_ocean.py -e "organization=appointmentguru service=authenticationguru entity_name=authentication"
+      - ./production.environment.yml:/code/ansible/group_vars/server_swarm.yml
+      - ./play.yml:/code/ansible/deploy.drf.yml
+    command: ansible-playbook /code/ansible/deploy.drf.yml  -i /etc/ansible/inventory/digital_ocean.py -e "organization=appointmentguru service=authenticationguru entity_name=authentication" --tags=deploy
     environment:
       - ANSIBLE_HOST_KEY_CHECKING=False
       - ANSIBLE_LIBRARY=/etc/ansible/library
-      - DO_API_TOKEN=d01d9821bb69f868a7e3b02a3a7f980704062e9ddc919c74cfda2ac4fcb7c4fd
