@@ -1,6 +1,10 @@
 # KongOAuth
 Simple Django OAuth Backend for Kong
 
+## Installation
+
+```pip install kong-oauth```
+
 ## Getting started
 
 You'll need to set the details for connecting to your Kong admin:
@@ -62,6 +66,10 @@ $ docker-compose run --rm service python manage.py createconsumer joesoap --appl
 ******Credentials:******
 {'consumer_id': 'accb1e62-5db8-4c74-86fa-5cab232788e0', 'client_id': 'accb1e62-5db8-4c74-86fa-5cab232788e0', 'id': 'de381dfc-087f-4f72-a104-efc43a8472b9', 'created_at': 1500639019000, 'redirect_uri': ['http://google.com/'], 'name': 'joesawesomeapp', 'client_secret': 'c9a44ec1-73ab-4cc2-ab58-c8b3683c39e6'}
 ```
+
+### Packaging:
+
+```python setup.py sdist upload```
 
 ### Debugging Kong
 
