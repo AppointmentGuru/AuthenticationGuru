@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'api',
-    'oauth',
+    'kong_oauth',
     'kongoauth',
 ]
 
@@ -51,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'oauth.middleware.KongUserMiddleware'
+    'kong_oauth.middleware.KongUserMiddleware'
 ]
 
 ROOT_URLCONF = 'kongoauth.urls'
