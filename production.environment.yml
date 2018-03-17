@@ -9,6 +9,8 @@ docker_environment:
     value: "{{aws_access_key}}"
   - key: AWS_SECRET_ACCESS_KEY
     value: "{{aws_secret_key}}"
+  - key: AWS_STORAGE_BUCKET_NAME
+    value: media-appointmentguru
   - key: KONG_ADMIN_URL
     value: http://kong:8001
   - key: KONG_GATEWAY_URL
