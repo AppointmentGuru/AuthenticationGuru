@@ -17,6 +17,12 @@ KONG_GATEWAY_URL = os.environ.get('KONG_ADMIN_URL')
 # optional if you have oauth:
 KONG_ADMIN_USERNAME = os.environ.get('KONG_ADMIN_USERNAME', None)
 KONG_ADMIN_PASSWORD = os.environ.get('KONG_ADMIN_PASSWORD', None)
+
+KONG_CLIENT_ID = os.environ.get('KONG_CLIENT_ID')
+KONG_CLIENT_SECRET = os.environ.get('KONG_CLIENT_SECRET')
+
+KONG_OAUTH_ENDPOINT = os.environ.get('KONG_OAUTH_ENDPOINT', 'https://46.101.71.132/mockbin/')
+APPGURU_URL = os.environ.get('APPGURU_URL', 'https://api.appointmentguru.co/')
 ```
 
 ### Set up Kong:
