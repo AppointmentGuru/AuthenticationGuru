@@ -21,3 +21,8 @@ docker_environment:
     value: https://api.appointmentguru.co
   - key: KONG_OAUTH_ENDPOINT
     value: https://46.101.71.132/mockbin/
+  - key: KONG_CLIENT_ID
+    value: 1E10898B-9D2F-43E3-838A-56E203A6EE38
+  - key: KONG_CLIENT_SECRET
+    value: D657BFCB-F7ED-47A5-A976-D47D57540409
+
