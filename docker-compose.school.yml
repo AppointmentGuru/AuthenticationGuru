@@ -6,7 +6,7 @@ services:
       - ~/.ssh:/root/.ssh # map ssh keys
       - ./production.environment.yml:/code/ansible/group_vars/server_swarm.yml
       - ./play.yml:/code/ansible/deploy.drf.yml
-    command: ansible-playbook /code/ansible/deploy.drf.yml  -i /etc/ansible/inventory/digital_ocean.py -e "organization=appointmentguru service=authenticationguru entity_name=authentication" --tags=deploy
+    command: ansible-playbook /code/ansible/deploy.drf.yml  -i /etc/ansible/inventory/digital_ocean.py -e "organization=appointmentguru service=authenticationguru entity_name=authentication" --tags=deploy --limit=swarm2
     environment:
       - ANSIBLE_HOST_KEY_CHECKING=False
       - ANSIBLE_LIBRARY=/etc/ansible/library
