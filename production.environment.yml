@@ -19,4 +19,5 @@ docker_environment:
     value: "{{kong_provision_key}}"
   - key: APPGURU_URL
     value: https://api.appointmentguru.co
-
+  - key: KONG_OAUTH_ENDPOINT
+    value: https://46.101.71.132/mockbin/

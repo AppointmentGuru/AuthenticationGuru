@@ -17,5 +17,6 @@ AUTHENTICATION_BACKENDS = [
 KONG_CLIENT_ID = "1E10898B-9D2F-43E3-838A-56E203A6EE38"
 KONG_CLIENT_SECRET = "D657BFCB-F7ED-47A5-A976-D47D57540409"
 
-KONG_OAUTH_ENDPOINT = 'https://invoiceguru.appointmentguru.co/oauth2/token/'
+# KONG_OAUTH_ENDPOINT = 'https://invoiceguru.appointmentguru.co/oauth2/token/'
+KONG_OAUTH_ENDPOINT = os.environ.get('KONG_OAUTH_ENDPOINT')
 APPGURU_URL = os.environ.get('APPGURU_URL', 'https://api.appointmentguru.co/')

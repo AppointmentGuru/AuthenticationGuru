@@ -36,15 +36,13 @@ def ag_authenticate(path, data):
 def kong_login(user, client_id, client_secret):
 
     base_url = getattr(settings, 'KONG_GATEWAY_URL')
-    data = {
-        "client_id": client_id,
-        "client_secret": client_secret, # testtest
-        "grant_type": "password",
-        "provision_key": settings.KONG_PROVISION_KEY,
-        "authenticated_userid": user.id,
-        # "username": username,
-        # "password": password
-    }
+data = {
+    "client_id": client_id,
+    "client_secret": client_secret, # testtest
+    "grant_type": "password",
+    "provision_key": settings.KONG_PROVISION_KEY,
+    "authenticated_userid": user.id,
+}
     url = "{}/oauth2/token".format(base_url)
     url = settings.KONG_OAUTH_ENDPOINT
     result = requests.post(url, data, verify=False)
