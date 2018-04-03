@@ -9,6 +9,8 @@ docker_environment:
     value: "{{aws_access_key}}"
   - key: AWS_SECRET_ACCESS_KEY
     value: "{{aws_secret_key}}"
+  - key: AWS_STORAGE_BUCKET_NAME
+    value: media-appointmentguru
   - key: KONG_ADMIN_URL
     value: http://kong:8001
   - key: KONG_GATEWAY_URL
@@ -17,3 +19,10 @@ docker_environment:
     value: "{{kong_provision_key}}"
   - key: APPGURU_URL
     value: https://api.appointmentguru.co
+  - key: KONG_OAUTH_ENDPOINT
+    value: https://46.101.71.132/mockbin/
+  - key: KONG_CLIENT_ID
+    value: 1E10898B-9D2F-43E3-838A-56E203A6EE38
+  - key: KONG_CLIENT_SECRET
+    value: D657BFCB-F7ED-47A5-A976-D47D57540409
+

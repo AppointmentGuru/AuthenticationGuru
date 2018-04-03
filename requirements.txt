@@ -8,4 +8,5 @@ ipython
 
 coverage
 codacy-coverage
+requests
 responses

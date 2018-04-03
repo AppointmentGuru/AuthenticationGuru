@@ -9,8 +9,14 @@ KONG_PROVISION_KEY = os.environ.get('KONG_PROVISION_KEY')
 
 AUTHENTICATION_BACKENDS = [
     'kong_oauth.authbackends.AppointmentGuruBackend',
+    'kong_oauth.authbackends.AppointmentGuruOTPBackend',
+    'kong_oauth.authbackends.AppointmentGuruPhoneBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-KONG_OAUTH_ENDPOINT = 'https://invoiceguru.appointmentguru.co/oauth2/token/'
+KONG_CLIENT_ID = os.environ.get('KONG_CLIENT_ID')
+KONG_CLIENT_SECRET = os.environ.get('KONG_CLIENT_SECRET')
+
+# KONG_OAUTH_ENDPOINT = 'https://invoiceguru.appointmentguru.co/oauth2/token/'
+KONG_OAUTH_ENDPOINT = os.environ.get('KONG_OAUTH_ENDPOINT')
 APPGURU_URL = os.environ.get('APPGURU_URL', 'https://api.appointmentguru.co/')

@@ -38,7 +38,10 @@
     docker_image: "{{service}}"
     docker_service: "{{service}}"
     docker_command: "sh /code/run.sh"
-
+    aws_backups_bucket: "media-appointmentguru"
+    aws_region: "eu-central-1"
+    postgres_passwords:
+      authenticationguru: "C5AB0266-B9A3-4B64-9509-16D5BB962D0D"
   roles:
     - role: djangoapp
       tags: [app, django, deploy]

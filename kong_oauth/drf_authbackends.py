@@ -15,4 +15,14 @@ class KongDownstreamAuthHeadersAuthentication(authentication.BaseAuthentication)
             user = AnonymousUser()
             raise exceptions.AuthenticationFailed('User not authenticated')
 
+class KongDownstreamAuthHeadersLocalAuthentication(authentication.BaseAuthentication):
+
+    def authenticate(self, request):
+        user_id = request.META.get('HTTP_X_AUTHENTICATED_USERID', None)
+        if user_id is not None:
+            user = get_user_model().objects.get(id=user_id)
+            return (user, None)
+        else:
+            user = AnonymousUser()
+            raise exceptions.AuthenticationFailed('User not authenticated')
 
