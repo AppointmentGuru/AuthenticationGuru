@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.urls import reverse
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.conf import settings
 
 import responses, json
@@ -22,6 +22,7 @@ class LoginGetTestCase(TestCase):
         status = self.result.status_code
         assert status == 200, 'Expected 200. Got: {}'.format(status)
 
+@override_settings(KONG_OAUTH_ENDPOINT='https://kongservice/oauth2/token')
 class LoginTestCase(TestCase):
 
     def setUp(self):
